@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Not found</title>
+<!--
+  GitHub serves this for any path on thefleece.github.io that no project claims.
+
+  Dota 2 Mod Manager lived at thefleece.github.io/dota2-mod-manager/ until its repository moved
+  to github.com/dota2modmanager, and GitHub Pages does not follow a repository that moves. Copies
+  of the app already installed, and preset links already shared, still point here. The pages
+  under /dota2-mod-manager/ in this repository answer those, and anything deeper that is not
+  there lands on this page, which sends it to the same path on dota2modmanager.com.
+-->
+<style>
+  :root { color-scheme: dark; }
+  body {
+    margin: 0; min-height: 100vh; display: grid; place-items: center;
+    background: #0d0d13; color: #e9e7f2; font: 15px/1.65 system-ui, "Segoe UI", Roboto, sans-serif;
+  }
+  .box { width: min(520px, 90vw); padding: 34px 30px; text-align: center; }
+  h1 { font-size: 20px; margin: 0 0 8px; }
+  p { margin: 0; color: #a8a2c0; }
+</style>
+</head>
+<body>
+<div class="box">
+  <h1 id="title">Page not found</h1>
+  <p id="lead">That address doesn't exist here.</p>
+</div>
+<script>
+  var base = '/dota2-mod-manager';
+  var path = location.pathname;
+  if (path === base || path.indexOf(base + '/') === 0) {
+    var code = (location.hash || '').replace(/^#/, '');
+    // a preset link that lost its path still carries the preset: the relay's own preset page reads it
+    if (/^[A-Za-z0-9_-]+$/.test(code)) location.replace(base + '/p/#' + code);
+    else location.replace('https://dota2modmanager.com' + (path.slice(base.length) || '/') + location.search + location.hash);
+  } else if ((navigator.language || '').toLowerCase().indexOf('ru') === 0) {
+    document.getElementById('title').textContent = 'Страница не найдена';
+    document.getElementById('lead').textContent = 'Такого адреса тут нет.';
+  }
+</script>
+</body>
+</html>
